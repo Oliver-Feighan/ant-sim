@@ -1,31 +1,36 @@
-#include <SFML/Graphics.hpp>
-#include <math.h>
+#include <armadillo>
 
-#define PI 3.14159265
+class AntColony {
+	const double steering_probability = 0.1;
+	const double steering_factor = 1;
+	const double speed = 5;
 
-std::pair<double, double>
-random_target();
+	const double home_pheromone_freq = 0.01;
+	const double home_pheromone_time_c = 1;
+	const double home_pheromone_distance_c = 200;
 
-class Ant {
-
-	sf::CircleShape shape;
-
-	double speed = 0.1;
-	
 	public:
-		std::pair<double, double> direction = random_target();
+		int n_ants;
 
-		Ant(sf::RenderWindow & window,
-			double x = 0.,
-			double y = 0.);
+		arma::mat positions;
+		arma::mat directions;
+		arma::uvec follow_modes;
+
+		arma::mat emitting_positions = arma::zeros(2, 0);
+		arma::vec emission_times = arma::zeros(0);
+
+
+		std::function<double(const arma::vec &coor, const double time)>
+		make_home_pheromones(
+			double time
+		);
+
+		AntColony(
+			int n_ants,
+			const arma::vec &origin
+		);
 
 		void
-		follow_target(const std::pair<int, int> &target,
-					  sf::RenderWindow & window);
+		move();
 
-		void move(sf::RenderWindow & window);
-
-		void
-		new_direction();
-		
 };

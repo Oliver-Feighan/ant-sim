@@ -4,7 +4,7 @@
 # compile CXX with /Library/Developer/CommandLineTools/usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -isystem /Users/of15641/opt/anaconda3/envs/ant_sim/include
+CXX_INCLUDES = -I/usr/local/include -isystem /Users/of15641/opt/anaconda3/envs/ant_sim/include
 
 CXX_FLAGS =  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -std=gnu++17
 

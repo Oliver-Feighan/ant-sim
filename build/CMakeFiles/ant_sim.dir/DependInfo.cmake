@@ -11,6 +11,7 @@ set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/usr/local/include"
   "/Users/of15641/opt/anaconda3/envs/ant_sim/include"
   )
 

@@ -114,6 +114,7 @@ ant_sim: CMakeFiles/ant_sim.dir/src/main.cpp.o
 ant_sim: CMakeFiles/ant_sim.dir/src/ant.cpp.o
 ant_sim: CMakeFiles/ant_sim.dir/build.make
 ant_sim: /Users/of15641/opt/anaconda3/envs/ant_sim/lib/libsfml-graphics.2.5.1.dylib
+ant_sim: /usr/local/lib/libarmadillo.dylib
 ant_sim: /Users/of15641/opt/anaconda3/envs/ant_sim/lib/libsfml-window.2.5.1.dylib
 ant_sim: /Users/of15641/opt/anaconda3/envs/ant_sim/lib/libsfml-system.2.5.1.dylib
 ant_sim: CMakeFiles/ant_sim.dir/link.txt

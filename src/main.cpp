@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 #include <iostream>
 #include <vector>
 
@@ -9,16 +10,10 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(1800, 1800), "Ant Colony Simulation");
 
-    std::vector<Ant> ants;
+    auto ant_colony = AntColony(200, arma::vec{900, 900});
 
-    for(int i = 0; i < 200; i++){
-    	ants.push_back(Ant(window, 900, 900));
-    }
-
-
-    auto count = 0;
-
-    std::pair<int, int> target;
+    sf::Clock clock;
+    double time = clock.getElapsedTime().asSeconds();
 
     while(window.isOpen()){
     	window.clear();
@@ -34,9 +29,6 @@ int main()
     	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
     		const auto pos = sf::Mouse::getPosition(window);
 
-    		target.first = pos.x;
-    		target.second = pos.y;
-
     		sf::CircleShape shape(20.f);
     		shape.setPosition(pos.x, pos.y);
 
@@ -45,18 +37,45 @@ int main()
     		window.draw(shape);
     	}
 
+    	time = clock.getElapsedTime().asSeconds();
+    	ant_colony.move();
 
-    	count++;
+    	window.clear();
 
-    	if(count % 2000 == 0){
-    		for(auto &ant : ants){
-    			ant.new_direction();
+	    const auto home_func = ant_colony.make_home_pheromones(time);
+
+    	for(double i = 0; i < 1800.; i += 50.){
+    		for(double j = 0.; j < 1800.; j += 50.){
+
+    			const auto strength = home_func(arma::vec{i, j}, time);
+
+    			if(strength < 1){
+    				continue;
+    			}
+    
+    			sf::CircleShape square(10.f, 4);
+    			square.setPosition(i, j);
+    			square.rotate(45);
+    			square.setFillColor(sf::Color(0, 0, strength));
+
+    			window.draw(square);
+
+
     		}
     	}
 
-    	for(auto &ant : ants){
-    		ant.move(window);
-		}	
+
+    	for(int i = 0; i < ant_colony.positions.n_cols; i++){
+    		const arma::vec pos = ant_colony.positions.col(i);
+    		sf::CircleShape shape(1.f);
+
+    		shape.setPosition(pos(0), pos(1));
+    		shape.setFillColor(sf::Color::Green);
+
+    		window.draw(shape);
+
+
+    	}
 
     	window.display();
 
