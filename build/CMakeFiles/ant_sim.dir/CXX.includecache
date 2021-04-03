@@ -6,17 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/Users/of15641/Documents/OwnProjects/ant-sim/src/ant.cpp
-ant.h
 /Users/of15641/Documents/OwnProjects/ant-sim/src/ant.h
-algorithm
+armadillo
 -
-iostream
--
-stdlib.h
--
+food.h
+/Users/of15641/Documents/OwnProjects/ant-sim/src/food.h
 
-/Users/of15641/Documents/OwnProjects/ant-sim/src/ant.h
+/Users/of15641/Documents/OwnProjects/ant-sim/src/food.h
 armadillo
 -
 

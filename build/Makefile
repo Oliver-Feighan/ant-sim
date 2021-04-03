@@ -169,6 +169,33 @@ src/ant.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ant_sim.dir/build.make CMakeFiles/ant_sim.dir/src/ant.cpp.s
 .PHONY : src/ant.cpp.s
 
+src/food.o: src/food.cpp.o
+
+.PHONY : src/food.o
+
+# target to build an object file
+src/food.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ant_sim.dir/build.make CMakeFiles/ant_sim.dir/src/food.cpp.o
+.PHONY : src/food.cpp.o
+
+src/food.i: src/food.cpp.i
+
+.PHONY : src/food.i
+
+# target to preprocess a source file
+src/food.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ant_sim.dir/build.make CMakeFiles/ant_sim.dir/src/food.cpp.i
+.PHONY : src/food.cpp.i
+
+src/food.s: src/food.cpp.s
+
+.PHONY : src/food.s
+
+# target to generate assembly for a file
+src/food.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ant_sim.dir/build.make CMakeFiles/ant_sim.dir/src/food.cpp.s
+.PHONY : src/food.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -208,6 +235,9 @@ help:
 	@echo "... src/ant.o"
 	@echo "... src/ant.i"
 	@echo "... src/ant.s"
+	@echo "... src/food.o"
+	@echo "... src/food.i"
+	@echo "... src/food.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

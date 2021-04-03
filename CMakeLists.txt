@@ -19,6 +19,7 @@ include_directories(${ARMADILLO_INCLUDE_DIRS})
 add_executable(ant_sim
 	src/main.cpp
 	src/ant.cpp
+	src/food.cpp
 )
 
 target_link_libraries(ant_sim PRIVATE sfml-window)
