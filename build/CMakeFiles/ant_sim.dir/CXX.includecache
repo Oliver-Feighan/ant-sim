@@ -9,12 +9,8 @@
 /Users/of15641/Documents/OwnProjects/ant-sim/src/ant.h
 armadillo
 -
-food.h
-/Users/of15641/Documents/OwnProjects/ant-sim/src/food.h
-
-/Users/of15641/Documents/OwnProjects/ant-sim/src/food.h
-armadillo
--
+utils.h
+/Users/of15641/Documents/OwnProjects/ant-sim/src/utils.h
 
 /Users/of15641/Documents/OwnProjects/ant-sim/src/main.cpp
 SFML/Graphics.hpp
@@ -27,6 +23,10 @@ vector
 -
 ant.h
 /Users/of15641/Documents/OwnProjects/ant-sim/src/ant.h
+
+/Users/of15641/Documents/OwnProjects/ant-sim/src/utils.h
+armadillo
+-
 
 /Users/of15641/opt/anaconda3/envs/ant_sim/include/SFML/Config.hpp
 TargetConditionals.h

@@ -102,31 +102,31 @@ CMakeFiles/ant_sim.dir/src/ant.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ant_sim.dir/src/ant.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/of15641/Documents/OwnProjects/ant-sim/src/ant.cpp -o CMakeFiles/ant_sim.dir/src/ant.cpp.s
 
-CMakeFiles/ant_sim.dir/src/food.cpp.o: CMakeFiles/ant_sim.dir/flags.make
-CMakeFiles/ant_sim.dir/src/food.cpp.o: ../src/food.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/of15641/Documents/OwnProjects/ant-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ant_sim.dir/src/food.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ant_sim.dir/src/food.cpp.o -c /Users/of15641/Documents/OwnProjects/ant-sim/src/food.cpp
+CMakeFiles/ant_sim.dir/src/utils.cpp.o: CMakeFiles/ant_sim.dir/flags.make
+CMakeFiles/ant_sim.dir/src/utils.cpp.o: ../src/utils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/of15641/Documents/OwnProjects/ant-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ant_sim.dir/src/utils.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ant_sim.dir/src/utils.cpp.o -c /Users/of15641/Documents/OwnProjects/ant-sim/src/utils.cpp
 
-CMakeFiles/ant_sim.dir/src/food.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ant_sim.dir/src/food.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/of15641/Documents/OwnProjects/ant-sim/src/food.cpp > CMakeFiles/ant_sim.dir/src/food.cpp.i
+CMakeFiles/ant_sim.dir/src/utils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ant_sim.dir/src/utils.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/of15641/Documents/OwnProjects/ant-sim/src/utils.cpp > CMakeFiles/ant_sim.dir/src/utils.cpp.i
 
-CMakeFiles/ant_sim.dir/src/food.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ant_sim.dir/src/food.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/of15641/Documents/OwnProjects/ant-sim/src/food.cpp -o CMakeFiles/ant_sim.dir/src/food.cpp.s
+CMakeFiles/ant_sim.dir/src/utils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ant_sim.dir/src/utils.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/of15641/Documents/OwnProjects/ant-sim/src/utils.cpp -o CMakeFiles/ant_sim.dir/src/utils.cpp.s
 
 # Object files for target ant_sim
 ant_sim_OBJECTS = \
 "CMakeFiles/ant_sim.dir/src/main.cpp.o" \
 "CMakeFiles/ant_sim.dir/src/ant.cpp.o" \
-"CMakeFiles/ant_sim.dir/src/food.cpp.o"
+"CMakeFiles/ant_sim.dir/src/utils.cpp.o"
 
 # External object files for target ant_sim
 ant_sim_EXTERNAL_OBJECTS =
 
 ant_sim: CMakeFiles/ant_sim.dir/src/main.cpp.o
 ant_sim: CMakeFiles/ant_sim.dir/src/ant.cpp.o
-ant_sim: CMakeFiles/ant_sim.dir/src/food.cpp.o
+ant_sim: CMakeFiles/ant_sim.dir/src/utils.cpp.o
 ant_sim: CMakeFiles/ant_sim.dir/build.make
 ant_sim: /Users/of15641/opt/anaconda3/envs/ant_sim/lib/libsfml-graphics.2.5.1.dylib
 ant_sim: /usr/local/lib/libarmadillo.dylib

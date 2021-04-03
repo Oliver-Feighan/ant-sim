@@ -3,7 +3,7 @@
 
 CMakeFiles/ant_sim.dir/src/ant.cpp.o: ../src/ant.cpp
 CMakeFiles/ant_sim.dir/src/ant.cpp.o: ../src/ant.h
-CMakeFiles/ant_sim.dir/src/ant.cpp.o: ../src/food.h
+CMakeFiles/ant_sim.dir/src/ant.cpp.o: ../src/utils.h
 CMakeFiles/ant_sim.dir/src/ant.cpp.o: /usr/local/include/H5ACpublic.h
 CMakeFiles/ant_sim.dir/src/ant.cpp.o: /usr/local/include/H5Apublic.h
 CMakeFiles/ant_sim.dir/src/ant.cpp.o: /usr/local/include/H5Cpublic.h
@@ -638,11 +638,9 @@ CMakeFiles/ant_sim.dir/src/ant.cpp.o: /usr/local/include/tbb/scalable_allocator.
 CMakeFiles/ant_sim.dir/src/ant.cpp.o: /usr/local/include/tbb/tbb_config.h
 CMakeFiles/ant_sim.dir/src/ant.cpp.o: /usr/local/include/tbb/tbb_stddef.h
 
-CMakeFiles/ant_sim.dir/src/food.cpp.o: ../src/food.cpp
-
 CMakeFiles/ant_sim.dir/src/main.cpp.o: ../src/ant.h
-CMakeFiles/ant_sim.dir/src/main.cpp.o: ../src/food.h
 CMakeFiles/ant_sim.dir/src/main.cpp.o: ../src/main.cpp
+CMakeFiles/ant_sim.dir/src/main.cpp.o: ../src/utils.h
 CMakeFiles/ant_sim.dir/src/main.cpp.o: /Users/of15641/opt/anaconda3/envs/ant_sim/include/SFML/Config.hpp
 CMakeFiles/ant_sim.dir/src/main.cpp.o: /Users/of15641/opt/anaconda3/envs/ant_sim/include/SFML/Graphics.hpp
 CMakeFiles/ant_sim.dir/src/main.cpp.o: /Users/of15641/opt/anaconda3/envs/ant_sim/include/SFML/Graphics/BlendMode.hpp
@@ -1350,4 +1348,6 @@ CMakeFiles/ant_sim.dir/src/main.cpp.o: /usr/local/include/tbb/internal/_tbb_wind
 CMakeFiles/ant_sim.dir/src/main.cpp.o: /usr/local/include/tbb/scalable_allocator.h
 CMakeFiles/ant_sim.dir/src/main.cpp.o: /usr/local/include/tbb/tbb_config.h
 CMakeFiles/ant_sim.dir/src/main.cpp.o: /usr/local/include/tbb/tbb_stddef.h
+
+CMakeFiles/ant_sim.dir/src/utils.cpp.o: ../src/utils.cpp
 
