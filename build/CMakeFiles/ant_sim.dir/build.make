@@ -79,41 +79,41 @@ include CMakeFiles/ant_sim.dir/flags.make
 CMakeFiles/ant_sim.dir/src/main.cpp.o: CMakeFiles/ant_sim.dir/flags.make
 CMakeFiles/ant_sim.dir/src/main.cpp.o: ../src/main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/of15641/Documents/OwnProjects/ant-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ant_sim.dir/src/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ant_sim.dir/src/main.cpp.o -c /Users/of15641/Documents/OwnProjects/ant-sim/src/main.cpp
+	/Library/Developer/CommandLineTools/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ant_sim.dir/src/main.cpp.o -c /Users/of15641/Documents/OwnProjects/ant-sim/src/main.cpp
 
 CMakeFiles/ant_sim.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ant_sim.dir/src/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/of15641/Documents/OwnProjects/ant-sim/src/main.cpp > CMakeFiles/ant_sim.dir/src/main.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/of15641/Documents/OwnProjects/ant-sim/src/main.cpp > CMakeFiles/ant_sim.dir/src/main.cpp.i
 
 CMakeFiles/ant_sim.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ant_sim.dir/src/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/of15641/Documents/OwnProjects/ant-sim/src/main.cpp -o CMakeFiles/ant_sim.dir/src/main.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/of15641/Documents/OwnProjects/ant-sim/src/main.cpp -o CMakeFiles/ant_sim.dir/src/main.cpp.s
 
 CMakeFiles/ant_sim.dir/src/ant.cpp.o: CMakeFiles/ant_sim.dir/flags.make
 CMakeFiles/ant_sim.dir/src/ant.cpp.o: ../src/ant.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/of15641/Documents/OwnProjects/ant-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ant_sim.dir/src/ant.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ant_sim.dir/src/ant.cpp.o -c /Users/of15641/Documents/OwnProjects/ant-sim/src/ant.cpp
+	/Library/Developer/CommandLineTools/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ant_sim.dir/src/ant.cpp.o -c /Users/of15641/Documents/OwnProjects/ant-sim/src/ant.cpp
 
 CMakeFiles/ant_sim.dir/src/ant.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ant_sim.dir/src/ant.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/of15641/Documents/OwnProjects/ant-sim/src/ant.cpp > CMakeFiles/ant_sim.dir/src/ant.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/of15641/Documents/OwnProjects/ant-sim/src/ant.cpp > CMakeFiles/ant_sim.dir/src/ant.cpp.i
 
 CMakeFiles/ant_sim.dir/src/ant.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ant_sim.dir/src/ant.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/of15641/Documents/OwnProjects/ant-sim/src/ant.cpp -o CMakeFiles/ant_sim.dir/src/ant.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/of15641/Documents/OwnProjects/ant-sim/src/ant.cpp -o CMakeFiles/ant_sim.dir/src/ant.cpp.s
 
 CMakeFiles/ant_sim.dir/src/utils.cpp.o: CMakeFiles/ant_sim.dir/flags.make
 CMakeFiles/ant_sim.dir/src/utils.cpp.o: ../src/utils.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/of15641/Documents/OwnProjects/ant-sim/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ant_sim.dir/src/utils.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ant_sim.dir/src/utils.cpp.o -c /Users/of15641/Documents/OwnProjects/ant-sim/src/utils.cpp
+	/Library/Developer/CommandLineTools/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ant_sim.dir/src/utils.cpp.o -c /Users/of15641/Documents/OwnProjects/ant-sim/src/utils.cpp
 
 CMakeFiles/ant_sim.dir/src/utils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ant_sim.dir/src/utils.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/of15641/Documents/OwnProjects/ant-sim/src/utils.cpp > CMakeFiles/ant_sim.dir/src/utils.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/of15641/Documents/OwnProjects/ant-sim/src/utils.cpp > CMakeFiles/ant_sim.dir/src/utils.cpp.i
 
 CMakeFiles/ant_sim.dir/src/utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ant_sim.dir/src/utils.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/of15641/Documents/OwnProjects/ant-sim/src/utils.cpp -o CMakeFiles/ant_sim.dir/src/utils.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/of15641/Documents/OwnProjects/ant-sim/src/utils.cpp -o CMakeFiles/ant_sim.dir/src/utils.cpp.s
 
 # Object files for target ant_sim
 ant_sim_OBJECTS = \

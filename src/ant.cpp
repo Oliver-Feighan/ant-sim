@@ -12,9 +12,9 @@ T mod(T a, int n)
 arma::mat
 make_random_directions(const int n_cols){
 
-	const arma::mat unsinged_directions = arma::randu(2, n_cols);
-	const arma::mat singed_directions = 2 * unsinged_directions -1;
-	return arma::normalise(singed_directions);
+	const arma::mat unsigned_directions = arma::randu(2, n_cols);
+	const arma::mat signed_directions = 2 * unsigned_directions -1;
+	return arma::normalise(signed_directions);
 }
 
 arma::vec
@@ -30,112 +30,42 @@ get_distances(const arma::mat &relative_displacements){
 
 }
 
-std::function<double(const arma::vec &coord, const double time)>
-AntColony::make_home_pheromones(
+void
+AntColony::update_pheromones(
 	const double time
 	){
 
-	//remove the old points that have gone past the time limit
-	const arma::uvec active_points = 
-		arma::find((time - this->home_emission_times) < this->pheromone_time_c);
-
-	this->home_emitting_positions = this->home_emitting_positions.cols(active_points);
-	this->home_emission_times = this->home_emission_times(active_points);
-
+	//decrease the intensity of existing points
+	this->emission_strengths -= this->time_deactivation * (time - this->emission_times);
 
 	//get the new start times and positions of pheromone centers
-	const arma::uvec getting_food = arma::find(this->follow_modes == 0);
-	const arma::mat new_emissions_positions = this->positions.cols(getting_food);
+	const arma::mat new_emissions_positions = this->positions;
 
 	const arma::vec new_emission_times = 
-			[time, 
-			n_centres = new_emissions_positions.n_cols](){
+			[time, n_centres = new_emissions_positions.n_cols](){
 		arma::vec result = arma::vec(n_centres);
 		result.fill(time);
 
 		return result;
 	}();
 
-	//append the new positions to the emission lists
-	this->home_emitting_positions = arma::join_horiz(this->home_emitting_positions, new_emissions_positions);
-	this->home_emission_times = arma::join_vert(this->home_emission_times, new_emission_times);
-
-	return [emitting_positions = this->home_emitting_positions, 
-			emission_times = this->home_emission_times,
-			time_c = this->pheromone_time_c,
-			distance_c = this->pheromone_distance_c,
-			strength = this->pheromone_strength](
-			const arma::vec &coord, const double time
-			){
-
-		arma::vec time_function = time_c - (time - emission_times);
-		time_function(arma::find(time_function < 0)).fill(0);
-
-		const arma::vec distances = get_distances(coord - emitting_positions.each_col());
-
-		arma::vec distance_function = distance_c - distances;
-		distance_function(arma::find(distance_function < 0)).fill(0);
-
-		return std::min(arma::sum(strength * time_function % distance_function), 255.);
-
-	};
-
-
-}
-
-std::function<double(const arma::vec &coord, const double time)>
-AntColony::make_food_pheromones(
-	const double time
-	){
-
-	//remove the old points that have gone past the time limit
-	const arma::uvec active_points = 
-		arma::find((time - this->food_emission_times) < this->pheromone_time_c);
-
-	this->food_emitting_positions = this->food_emitting_positions.cols(active_points);
-	this->food_emission_times = this->home_emission_times(active_points);
-
-
-	//get the new start times and positions of pheromone centers
-	const arma::uvec getting_food = arma::find(this->follow_modes == 1);
-	const arma::mat new_emissions_positions = this->positions.cols(getting_food);
-
-	const arma::vec new_emission_times = 
-			[time, 
-			n_centres = new_emissions_positions.n_cols](){
-		arma::vec result = arma::vec(n_centres);
-		result.fill(time);
-
-		return result;
-	}();
+	const arma::vec new_emission_strengths = this->energies;
 
 	//append the new positions to the emission lists
-	this->food_emitting_positions = arma::join_horiz(this->food_emitting_positions, new_emissions_positions);
-	this->food_emission_times = arma::join_vert(this->food_emission_times, new_emission_times);
+	this->emission_positions = arma::join_horiz(this->emission_positions, new_emissions_positions);
+	this->emission_times = arma::join_vert(this->emission_times, new_emission_times);
+	this->emission_strengths = arma::join_vert(this->emission_strengths, new_emission_strengths);
+	this->emission_types = arma::join_vert(this->emission_types, this->follow_modes);
 
-	return [emitting_positions = this->food_emitting_positions, 
-			emission_times = this->food_emission_times,
-			time_c = this->pheromone_time_c,
-			distance_c = this->pheromone_distance_c,
-			strength = this->pheromone_strength](
-			const arma::vec &coord, const double time
-			){
+	//remove the old points that have gone past the time limit or have strengths under threshold
+	const arma::uvec active_points = arma::find(this->emission_strengths > 1e-6);
 
-		arma::vec time_function = time_c - (time - emission_times);
-		time_function(arma::find(time_function < 0)).fill(0);
-
-		const arma::vec distances = get_distances(coord - emitting_positions.each_col());
-
-		arma::vec distance_function = distance_c - distances;
-		distance_function(arma::find(distance_function < 0)).fill(0);
-
-		return std::min(arma::sum(strength * time_function % distance_function), 255.);
-
-	};
-
+	this->emission_positions = this->emission_positions.cols(active_points);
+	this->emission_times = this->emission_times(active_points);
+	this->emission_strengths = this->emission_strengths(active_points);
+	this->emission_types = this->emission_types(active_points);
 
 }
-
 
 AntColony::AntColony(
 	const int n_ants,
@@ -144,43 +74,147 @@ AntColony::AntColony(
 
 	this->n_ants = n_ants;
 	this->follow_modes = arma::uvec(n_ants, arma::fill::zeros);
-	this->positions = arma::mat(2, n_ants, arma::fill::zeros).each_col() + origin;
-	this->directions = make_random_directions(this->n_ants);
+	this->energies = arma::zeros(n_ants);
+	this->energies.fill(this->max_energy);
+
+	const auto points_on_unit_circle = make_random_directions(this->n_ants);
+	this->positions = 25 * points_on_unit_circle;
+	this->positions.each_col() += origin;
+
+	this->directions = points_on_unit_circle;
 
 };
 
+arma::mat
+distance_matrix(
+	const arma::mat &coords1,
+	const arma::mat &coords2
+	){
+
+	const auto dim2 = coords2.n_cols;
+
+	const arma::mat x1_image = arma::repmat(coords1.row(0).t(), 1, dim2);
+	const arma::mat y1_image = arma::repmat(coords1.row(1).t(), 1, dim2);
+
+	const arma::mat x1_x2 = x1_image.each_row() - coords2.row(0);
+	const arma::mat y1_y2 = y1_image.each_row() - coords2.row(1);
+	
+	return arma::sqrt(arma::square(x1_x2) + arma::square(y1_y2)); 
+}
+
 void
-AntColony::move(const Food &food){
+AntColony::smell_pheromones(const Food &food, const Home &home)
+	{
 
-	//update following modes
-	const arma::vec distance_to_food = get_distances(this->positions.each_col() - food.pos);
-	const arma::uvec at_food_pile = arma::find(distance_to_food < food.size);
+	const auto full_distance_mat = distance_matrix(this->positions, this->emission_positions);
 
-	this->follow_modes(at_food_pile).fill(1);
+	for(int i = 0; i < full_distance_mat.n_rows; i++){
+		const arma::vec pos_i = this->positions.col(i);
+		const arma::uword mode = this->follow_modes(i);
 
-	const arma::uvec getting_food = arma::find(this->follow_modes == 0);
-	const arma::uvec going_home = arma::find(this->follow_modes == 1);
+		if(mode == 0 && arma::norm(pos_i - food.pos) < food.size + smelling_max_distance){
+			this->directions.col(i) = food.pos - pos_i; 
+			continue;
+		}
 
-	//if in the food or home smell circles (and correct mode), move towards target
-	const arma::uvec at_food_smell = arma::find(distance_to_food < food.pheromone_size);
+		if(mode == 1 && arma::norm(pos_i - home.pos) < home.size + smelling_max_distance){
+			this->directions.col(i) = home.pos - pos_i; 
+			continue;
+		}
 
-	const arma::uvec at_food_want_food = arma::intersect(at_food_smell, getting_food);
+		double max_strength = 0;
+		
+		const arma::vec dir = this->directions.col(i);
 
-	this->directions.cols(at_food_want_food) = food.pos - this->positions.cols(at_food_want_food).eval().each_col();
+		for(int j = 0; j < full_distance_mat.n_cols; j++){
+			if(this->emission_types(j) == mode){
+				continue;
+			}
+			
+			if(full_distance_mat(i, j) > this->smelling_max_distance){
+				continue;
+			}
+			
+			if(this->emission_strengths(j) < max_strength){
+				continue;
+			}
+			
+			const arma::vec pos_j = this->emission_positions.col(j);
 
-	//otherwise follow smells and steering
+			if(std::acos(arma::norm_dot(dir, pos_j)) < 1.0){
+				continue;
+			}
+			
+			max_strength = this->emission_strengths(j);	
+
+		}
+
+		if(max_strength == 0){
+			continue;
+		}
+
+		const arma::uvec index = arma::find(this->emission_strengths == max_strength);
+		this->directions.col(i) = this->emission_positions.col(index(0)) - pos_i;
+	}
+}
+
+void
+AntColony::move(
+	const Food &food,
+	const Home &home,
+ 	double d_time
+	){
+
+	//lower energy levels
+	this->energies *= 0.99;
+	//this->energies = arma::clamp(this->energies, this->min_energy, this->max_energy);
+
+	//follow smells and steering
+	//steering
 	const arma::uvec steering_mask = 
 		arma::find(arma::randu(this->n_ants) < this->steering_probability);
 
 	const arma::mat steering_directions =
 		make_random_directions(steering_mask.n_rows);
 
-	this->directions.cols(steering_mask) += steering_directions;
+	this->directions.cols(steering_mask) += this->steering_factor * steering_directions;
 
+	//update following modes
+	const arma::vec distance_to_food = get_distances(this->positions.each_col() - food.pos);
+	const arma::uvec at_food_pile = arma::find(distance_to_food < food.size);
+
+	const arma::vec distance_to_home = get_distances(this->positions.each_col() - home.pos);
+	const arma::uvec at_home_pile = arma::find(distance_to_home < home.size);
+
+	this->returned += arma::intersect(at_home_pile, arma::find(this->follow_modes == 1)).eval().n_elem;
+
+	this->follow_modes(at_food_pile).fill(1);
+	this->follow_modes(at_home_pile).fill(0);
+
+	const arma::uvec getting_food = arma::find(this->follow_modes == 0);
+	const arma::uvec going_home = arma::find(this->follow_modes == 1);
+
+	//if at the home or food pile, recharge to max_energy and turn around
+	const arma::uvec recharged = arma::join_vert(at_food_pile, at_home_pile);
+	this->energies(recharged).fill(this->max_energy);
+
+	this->smell_pheromones(food, home);
+	
+	//normalize directions
 	this->directions = arma::normalise(this->directions);
 
-	const arma::mat new_positions =
-		this->positions + this->speed * this->directions;
+	//update positions
+	const arma::mat new_positions = this->positions + this->speed * this->directions; // * d_time;
 
+	//periodic boundries
 	this->positions = mod<arma::mat>(new_positions + 1800, 1800);
+
+
+
+
+
+
+
+
+
 }

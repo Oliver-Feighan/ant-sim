@@ -5,6 +5,7 @@ CMakeFiles/ant_sim.dir/src/ant.cpp.o
  /Users/of15641/Documents/OwnProjects/ant-sim/src/ant.cpp
  /Users/of15641/Documents/OwnProjects/ant-sim/src/ant.h
  /Users/of15641/Documents/OwnProjects/ant-sim/src/utils.h
+ /Users/of15641/opt/anaconda3/envs/ant_sim/include/omp.h
  /usr/local/include/H5ACpublic.h
  /usr/local/include/H5Apublic.h
  /usr/local/include/H5Cpublic.h
@@ -716,6 +717,7 @@ CMakeFiles/ant_sim.dir/src/main.cpp.o
  /Users/of15641/opt/anaconda3/envs/ant_sim/include/SFML/Window/Window.hpp
  /Users/of15641/opt/anaconda3/envs/ant_sim/include/SFML/Window/WindowHandle.hpp
  /Users/of15641/opt/anaconda3/envs/ant_sim/include/SFML/Window/WindowStyle.hpp
+ /Users/of15641/opt/anaconda3/envs/ant_sim/include/omp.h
  /usr/local/include/H5ACpublic.h
  /usr/local/include/H5Apublic.h
  /usr/local/include/H5Cpublic.h

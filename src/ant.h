@@ -1,38 +1,44 @@
 #include <armadillo>
 
-#include "food.h"
+#include "utils.h"
 
 class AntColony {
-	const double steering_probability = 0.1;
-	const double steering_factor = 1;
-	const double speed = 1.2;
-
-	const double pheromone_freq = 0.2;
-	const double pheromone_time_c = 30;
-	const double pheromone_distance_c = 50;
-	const double pheromone_strength = 10;
-
 	public:
+		const double steering_probability = 0.1;
+		const double steering_factor = 1.5;
+		const double speed = 2.0;
+
+		const double max_energy = 5000;
+		const double min_energy = 30;
+
+		const double time_deactivation = 1;
+
+		const double smelling_max_distance = 80;
+
 		int n_ants;
 
 		arma::mat positions;
 		arma::mat directions;
 		arma::uvec follow_modes;
 
-		arma::mat home_emitting_positions = arma::zeros(2, 0);
-		arma::vec home_emission_times = arma::zeros(0);
+		arma::vec energies;
 
-		arma::mat food_emitting_positions = arma::zeros(2, 0);
-		arma::vec food_emission_times = arma::zeros(0);
+		arma::mat emission_positions = arma::zeros(2, 0);
+		arma::vec emission_times = arma::zeros(0);
+		arma::vec emission_strengths = arma::zeros(0);
+		arma::uvec emission_types = arma::uvec(0, arma::fill::zeros);
 
-		std::function<double(const arma::vec &coor, const double time)>
-		make_home_pheromones(
+		int returned = 0;
+
+		void
+		update_pheromones(
 			double time
 		);
 
-		std::function<double(const arma::vec &coor, const double time)>
-		make_food_pheromones(
-			double time
+		void
+		smell_pheromones(
+			const Food &food,
+			const Home &home
 		);
 
 		AntColony(
@@ -41,6 +47,10 @@ class AntColony {
 		);
 
 		void
-		move(const Food &food);
+		move(
+			const Food &food,
+			const Home &home,
+			double d_time
+		);
 
 };
